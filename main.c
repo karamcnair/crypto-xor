@@ -17,7 +17,7 @@ int main(void) {
   int byte_arr1[num_bytes];
   int byte_arr2[num_bytes];
   int result[num_bytes];
-  char result_string[num_chars] = "";
+  char result_string[num_chars];
 
 
   if (num_bytes != convert_hex_string_to_byte_array(hexstring1, num_chars, byte_arr1)) {
@@ -32,8 +32,13 @@ int main(void) {
   }
 
   // need to deal with strcat here I think.
-  convert_int_to_hex_charstr(result[0],hexstring2);
+  char hexcharstr[3] = "";
+  for (int i = 0; i < num_bytes; i++) {
 
-  printf("num_chars = %d, num_bytes = %d\n", num_chars, num_bytes);
+    convert_int_to_hex_charstr(result[i],hexcharstr);
+    strcat(result_string,hexcharstr);
+  }
+
+  printf("num_chars = %d, num_bytes = %d , result = %s\n", num_chars, num_bytes, result_string);
 
 }
